@@ -1,0 +1,1 @@
+[{"model": "place.place", "pk": 1, "fields": {"name": "Warteg Mafer", "description": "Tempat nya asik untuk nongkrong dan murah -murah loh makanannya", "is_active": true, "owner": 2}}, {"model": "place.place", "pk": 2, "fields": {"name": "Bubur Berkah", "description": "Bubur ayam khas", "is_active": true, "owner": 3}}]
