@@ -10,6 +10,7 @@ from django.db.models import Sum
 class Place(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
+    picture = models.ImageField(upload_to="assets/place_picture")
     is_active = models.BooleanField(default=False)
     owner = models.ForeignKey(User)
     

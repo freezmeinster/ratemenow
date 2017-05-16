@@ -16,7 +16,14 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from place import views
+
 urlpatterns = [
+    
+    url(r'auth/login', views.loginpage , name='loginpage'),
+    url(r'auth/logout', views.logoutpage , name='logoutpage'),
+    
     url(r'^admin/', admin.site.urls),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'', views.homepage, name='homepage'),
 ]

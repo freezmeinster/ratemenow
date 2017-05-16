@@ -11,7 +11,7 @@ activate_place.short_description = "Activate Place"
 
 
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = ['owner', 'name', 'is_active', 'total_rate', 'total_user']
+    list_display = ['name', 'owner', 'is_active', 'total_rate', 'total_user']
     readonly_fields = ['is_active', ]
     actions = [activate_place, ]
 
