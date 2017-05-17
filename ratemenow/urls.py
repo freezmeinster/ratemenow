@@ -1,29 +1,33 @@
-"""ratemenow URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from rest_framework import routers
+from rest_framework.authtoken import views as authtokenview
+
 from place import views
+from place import views_api
+
+router = routers.DefaultRouter()
+router.register(r"place", views_api.PlaceViewSet)
+router.register(r"user", views_api.CreateUserViewSet)
 
 urlpatterns = [
-    
-    url(r'auth/login', views.loginpage , name='loginpage'),
-    url(r'auth/logout', views.logoutpage , name='logoutpage'),
+    # Kelompok URL Authentification Website
+    url(r'^$', views.homepage, name='homepage'),
+    url(r'^auth/login', views.loginpage , name='loginpage'),
+    url(r'^auth/logout', views.logoutpage , name='logoutpage'),
+    url(r'^auth/reg', views.regpage , name='regpage'),
     
     url(r'^admin/', admin.site.urls),
+    
+    # Kelompik URL Webapps
+    url(r'^addplace/$', views.add_place, name='addplace'),
+    url(r'^place/(?P<place_id>\d+)/edit$', views.edit_place, name='editplace'),
+    url(r'^place/(?P<place_id>\d+)/delete$', views.delete_place, name='deleteplace'),
+    url(r'^place/(?P<place_id>\d+)/detail$', views.detail_place, name='detailplace'),
+    
+    # Kelompok URL API
+    url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'', views.homepage, name='homepage'),
+    url(r'^api-auth-token/', authtokenview.obtain_auth_token)
 ]

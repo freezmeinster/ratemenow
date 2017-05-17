@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<a href="{% url 'homepage' %}" class="btn btn-lg btn-primary">Back</a>
+<h1>Rate for : {{ place.name }}</h1>
+<hr/>
+<table class="table table-striped table-bordered">
+    <colgroup>
+          <col class="col-md-3">
+          <col class="col-md-3">
+          <col class="col-md-3">
+          <col class="col-md-3">
+        </colgroup>
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Rate</th>
+            <th>Comment</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for rate in place.userrate_set.all %}
+        <tr>
+            <td>{{ rate.user }}</td>
+            <td>{{ rate.rate_star }}</td>
+            <td>{{ rate.rate_comment }}</td>
+            <td>{{ rate.created_date  }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

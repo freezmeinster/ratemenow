@@ -27,8 +27,8 @@ class UserRate(models.Model):
         super(UserRate, self).clean()
     
     # class meta pada model digunakan untuk memberikan opsi unique_together
-    # opsi ini akan memastikan bahwa tidak ada user yang memberikan rate lebih dari satu
-    # pada Place yang sama.
+    # opsi ini akan memastikan bahwa tidak ada user yang memberikan rate
+    # lebih dari satu kali pada Place yang sama.
     class Meta :
         unique_together = (("user", "place"),)
         

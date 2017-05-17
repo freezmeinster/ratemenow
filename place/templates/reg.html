@@ -1,0 +1,20 @@
+{% extends 'base_auth.html' %}
+
+{% block content %}
+ 
+      <form class="form-signin" action="" method="POST">
+        {% csrf_token %}
+        <h2 class="form-signin-heading">Register here</h2>
+        {% include 'messages.html' %}
+        
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input type="text" id="inputEmail" name="username" class="form-control" placeholder="Username" required autofocus>
+        <br>
+        <label for="inputPassword1" class="sr-only">Password</label>
+        <input type="password" id="inputPassword1" name="password1" class="form-control" placeholder="Password" required>
+        <label for="inputPassword2" class="sr-only">Confirm Password</label>
+        <input type="password" id="inputPassword2" name="password2" class="form-control" placeholder="Confirm Password" required>
+        <button class="btn btn-lg btn-success" type="submit">Sign Up</button>
+        <a href="{% url 'loginpage' %}" class="btn btn-lg btn-primary">Cancel</a>
+      </form>
+{% endblock %}

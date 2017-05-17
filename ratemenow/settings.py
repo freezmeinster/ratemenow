@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'place',
     'rate',
-    'rest_framework'
+    'bootstrapform',
+    'rest_framework',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
@@ -130,4 +132,15 @@ STATICFILES_DIRS = [
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
+}
+
+LOGIN_URL = "/auth/login/"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+         'rest_framework.authentication.TokenAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
 }
