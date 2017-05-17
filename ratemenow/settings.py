@@ -144,3 +144,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
 }
+
+try:
+    from localsettings import *
+except ImportError as e:
+    pass
