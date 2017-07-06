@@ -1,4 +1,3 @@
-import sys, traceback
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from .models import Place
@@ -49,7 +48,6 @@ class PlaceViewSet(viewsets.ModelViewSet):
                 else :
                     response = { "status" : "error" ,"code" : 400, "message" : { "error" : rate.errors} }
             except :
-                traceback.print_exc(file=sys.stdout)
                 response = { "status" : "error" ,"code" : 404, "message" : "Place not found" }
         else :
             response = { "status" : "error" , "code" : 401, "message" : "Please authenticate first" }
