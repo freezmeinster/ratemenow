@@ -1,3 +1,4 @@
+import sys, traceback
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from .models import Place
@@ -8,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework import permissions
 from rate.serializers import UserSerializer
+from rate.serializers import UserRateSerializer
 from rest_framework.generics import CreateAPIView
 from rest_framework.authtoken.models import Token
 
@@ -47,6 +49,7 @@ class PlaceViewSet(viewsets.ModelViewSet):
                 else :
                     response = { "status" : "error" ,"code" : 400, "message" : { "error" : rate.errors} }
             except :
+                traceback.print_exc(file=sys.stdout)
                 response = { "status" : "error" ,"code" : 404, "message" : "Place not found" }
         else :
             response = { "status" : "error" , "code" : 401, "message" : "Please authenticate first" }
