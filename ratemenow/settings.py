@@ -130,7 +130,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "assets"),
 ]
 
-FILE_UPLOAD_PERMISSIONS = 0644
+FILE_UPLOAD_PERMISSIONS = 0o644
 
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
