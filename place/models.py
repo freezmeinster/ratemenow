@@ -18,6 +18,9 @@ class Place(models.Model):
     def __unicode__(self):
         return self.name
     
+    def __str__(self):
+        return self.name
+    
     @property
     def total_rate(self):
         total = self.userrate_set.all().aggregate(Sum('rate_star'))
