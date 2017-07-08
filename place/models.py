@@ -13,7 +13,7 @@ class Place(models.Model):
     description = models.TextField()
     picture = models.ImageField(upload_to="assets/place_picture")
     is_active = models.BooleanField(default=False, editable=False)
-    owner = models.ForeignKey(User, editable=False)
+    owner = models.ForeignKey(User)
     
     def __unicode__(self):
         return self.name

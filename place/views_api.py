@@ -7,10 +7,12 @@ from rest_framework.decorators import detail_route
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework import permissions
+from rate.serializers import UserSerializer
 from rate.serializers import UserRateSerializer
 from rest_framework.generics import CreateAPIView
 from rest_framework.authtoken.models import Token
 
+# View Set ini untuk user registration
 class CreateUserViewSet(viewsets.ModelViewSet):
 
     queryset = User.objects.filter(is_active=True)
@@ -25,7 +27,7 @@ class CreateUserViewSet(viewsets.ModelViewSet):
         token = Token.objects.create(user=user)
         return Response({ "token" : token.key })
 
-
+# View set ini untuk place
 class PlaceViewSet(viewsets.ModelViewSet):
     queryset = Place.objects.filter(is_active=True)
     serializer_class = PlaceSerializer

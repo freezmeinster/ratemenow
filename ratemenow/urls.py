@@ -20,7 +20,7 @@ urlpatterns = [
     
     url(r'^admin/', admin.site.urls),
     
-    # Kelompik URL Webapps
+    # Kelompok URL Webapps
     url(r'^addplace/$', views.add_place, name='addplace'),
     url(r'^place/(?P<place_id>\d+)/edit$', views.edit_place, name='editplace'),
     url(r'^place/(?P<place_id>\d+)/delete$', views.delete_place, name='deleteplace'),
