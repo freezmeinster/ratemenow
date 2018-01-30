@@ -11,12 +11,13 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import sys
 
 from django.contrib import messages
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+sys.path.insert(0, os.path.join(BASE_DIR, "apps"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -61,7 +62,9 @@ ROOT_URLCONF = 'ratemenow.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(os.path.dirname(__file__), '../templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,11 +127,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
+#
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "assets"),
+# ]
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "assets"),
-]
+STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(os.path.dirname(__file__),'../static')
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(__file__), "../static"),
+)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(__file__), "../media")
+
 
 FILE_UPLOAD_PERMISSIONS = 0o644
 
