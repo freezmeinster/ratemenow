@@ -13,9 +13,11 @@ from .forms import PlaceForm
 @login_required
 def homepage(request):
     place_list = Place.objects.filter(owner=request.user)
-    return render(request, "homepage.html", {
-            "place_list" : place_list
-        })
+    title = "Beranda"
+    # return render(request, " homepage.html", {
+    #         "place_list" : place_list
+    #     })
+    return render(request, "homepage.html", locals())
 
 @login_required
 def add_place(request):
@@ -109,7 +111,7 @@ def regpage(request):
         username = request.POST.get("username")
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
-        
+
         # Kondisi ini memastikan bahwa username yang digunakan belum pernah didaftarkan.
         if User.objects.filter(username=username):
             messages.error(request, "Username %s already exist, please choose another one" % username)
